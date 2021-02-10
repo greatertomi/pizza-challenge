@@ -25,9 +25,7 @@ CREATE TABLE `ingredients` (
   `pizzaId` int(30) NOT NULL,
   `name` varchar(100) NOT NULL,
   PRIMARY KEY (`ingredientId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-/*Data for the table `ingredients` */
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4;
 
 /*Table structure for table `order_items` */
 
@@ -39,9 +37,7 @@ CREATE TABLE `order_items` (
   `pizzaId` int(50) NOT NULL,
   `quantity` int(50) NOT NULL,
   PRIMARY KEY (`orderItemId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-/*Data for the table `order_items` */
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 
 /*Table structure for table `orders` */
 
@@ -52,9 +48,7 @@ CREATE TABLE `orders` (
   `orderedBy` varchar(250) DEFAULT NULL,
   `orderedDateTime` datetime DEFAULT NULL,
   PRIMARY KEY (`orderId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-/*Data for the table `orders` */
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
 
 /*Table structure for table `pizzas` */
 
@@ -63,11 +57,9 @@ DROP TABLE IF EXISTS `pizzas`;
 CREATE TABLE `pizzas` (
   `pizzaId` int(30) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
-  `price` int(50) NOT NULL,
+  `price` decimal(15,2) NOT NULL,
   PRIMARY KEY (`pizzaId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-/*Data for the table `pizzas` */
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

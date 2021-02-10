@@ -1,5 +1,6 @@
 /* eslint-disable no-await-in-loop */
 const util = require('util');
+const { validationResult } = require('express-validator');
 
 const db = require('../database');
 
@@ -28,6 +29,12 @@ exports.getPizzas = async (req, res) => {
 };
 
 exports.createPizza = async (req, res) => {
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
   const { name, price, ingredients } = req.body;
 
   try {

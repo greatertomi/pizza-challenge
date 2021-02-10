@@ -1,5 +1,6 @@
 /* eslint-disable no-await-in-loop */
 const util = require('util');
+const { validationResult } = require('express-validator');
 
 const db = require('../database');
 const { getCurrentDateTime } = require('../utils/helper-functions');
@@ -26,6 +27,12 @@ exports.getOrders = async (req, res) => {
 };
 
 exports.createOrder = async (req, res) => {
+  const errors = validationResult(req);
+
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
   const { orders, orderedBy } = req.body;
   const orderDateTime = getCurrentDateTime();
 
@@ -59,6 +66,10 @@ exports.getOrder = async (req, res) => {
     const [oneOrder] = await query('SELECT * FROM orders WHERE orderId = ?', [
       id
     ]);
+
+    if (!oneOrder) {
+      return res.status(404).send({ message: 'This order does not exist' });
+    }
 
     const orderItems = await query(
       `SELECT b.name, a.quantity, b.price, (a.quantity * b.price) 
