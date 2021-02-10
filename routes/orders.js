@@ -6,10 +6,8 @@ const router = Router();
 
 router.get('/', orderController.getOrders);
 
+router.get('/:id', orderController.getOrder);
+
 router.post('/', orderController.createOrder);
 
-// Todos
-// 1. Create an order
-// 2. Get Orders
-// 3. Get order by id
 module.exports = router;
